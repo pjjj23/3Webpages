@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>CTU AC Accredited Boarding House</title>
+    <style>
+        :root {
+            --primary-color: #2A9134;
+            --secondary-color: #5BBA6F;
+            --background-color: #f0f0f0;
+            --card-color: #ffffff;
+            --text-color: #333;
+            --hover-color: #1e7a27;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: white;
+            padding: 15px 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        header h1 {
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        .sao-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .sao-link:hover {
+            color: var(--hover-color);
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            padding: 60px 40px 40px; /* Increased top padding to accommodate the back button */
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: transparent;
+            color: var(--primary-color);
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            color: var(--hover-color);
+            background-color: rgba(42, 145, 52, 0.1);
+        }
+
+        .back-button i {
+            margin-right: 5px;
+        } 
+
+        .content-wrapper {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            background-color: var(--card-color);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .left-side, .right-side {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .left-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header h2 {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+
+        .login-header i {
+            font-size: 24px;
+            color: var(--primary-color); 
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        input {
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--hover-color);
+        }
+
+        .links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .links a:hover {
+            color: var(--hover-color);
+        }
+
+        .right-side {
+            background-color: var(--secondary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .right-side img {
+            max-width: 80%;
+            height: auto;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-logo {
+            display: none;
+        }
+
+        footer {
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--primary-color);
+        }
+
+        .successAnderrorMessagesPoppedup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    max-width: 350px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateX(100px);
+    animation: successAnderrorMessagesPoppedup-slideIn 0.3s ease forwards;
+}
+
+.successAnderrorMessagesPoppedup.success {
+    border-left: 4px solid #10B981;
+}
+
+.successAnderrorMessagesPoppedup.error {
+    border-left: 4px solid #EF4444;
+}
+
+.successAnderrorMessagesPoppedup.slideOut {
+    animation: successAnderrorMessagesPoppedup-slideOut 0.3s ease forwards;
+}
+
+.successAnderrorMessagesPoppedup-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.success .successAnderrorMessagesPoppedup-icon {
+    color: #10B981;
+}
+
+.error .successAnderrorMessagesPoppedup-icon {
+    color: #EF4444;
+}
+
+.successAnderrorMessagesPoppedup-content {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+@keyframes successAnderrorMessagesPoppedup-slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes successAnderrorMessagesPoppedup-slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+}
+
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .remember-me input[type="checkbox"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .remember-me label { 
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .remember-me i {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 1024px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+
+            .right-side {
+                display: none;
+            }
+
+            .mobile-logo {
+                display: block;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .mobile-logo img {
+                max-width: 100px;
+                height: auto; 
+            }
+
+            main {
+                padding: 20px;
+            }
+
+            .left-side {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 80px 20px 40px; /* Further increased top padding for mobile */
+            }
+
+            .back-button {
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 14px;
+                padding: 8px 12px;
+                background-color: var(--background-color);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .remember-me {
+                font-size: 13px;
+            }
+
+            header {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            header h1 {
+                margin: 20px 0;
+                font-size: 18px;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .sao-link {
+                margin-top: 10px;
+            } 
+
+            .left-side {
+                padding: 20px;
+            }
+
+            .login-header h2 {
+                font-size: 20px;
+            }
+
+            input, button {
+                font-size: 14px;
+            }
+
+            .links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .links a {
+                margin-bottom: 10px;
+            }
+
+            footer {
+                padding: 15px;
+            }
+
+            footer a {
+                display: block;
+                margin: 10px 0;
+            }
+            .modal-content {
+                scale: 0.5; 
+            }
+        }
+
+        @media (max-width: 480px) {
+            main {
+                padding: 70px 15px 30px; /* Adjusted padding for very small screens */
+            }
+
+            .back-button {
+                font-size: 13px;
+                padding: 6px 10px;
+            }
+
+            .remember-me {
+                font-size: 12px;
+            }
+
+            header h1 {
+                font-size: 16px;
+            }
+
+            .logo img {
+                height: 30px;
+            }
+
+            .login-header h2 {
+                font-size: 18px;
+            }
+
+            .login-header i {
+                font-size: 20px;
+            }
+
+            input, button {
+                font-size: 12px;
+                padding: 10px;
+            }
+
+            .popup {
+                padding: 12px;
+            }
+
+            .popup i {
+                font-size: 20px;
+            }
+
+            .popup-message {
+                font-size: 14px;
+            }
+
+            .popup-timer {
+                font-size: 10px;
+            }
+
+            .spinner {
+                width: 16px;
+                height: 16px;
+            }
+            .modal-content {
+                scale: 0.5; 
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+            padding: 20px 20px 20px 20px;
+            scale: 1.9;
+        }
+
+        .modal-content {
+            background-color: #EF4444;
+            padding: 20px 20px 20px 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-content h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: white;
+        }
+
+        .modal-content button {
+            background-color: #efa7a7;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .modal-content button:hover {
+            background-color: #7b1111;
+        }
+        .modal-content i{
+            scale: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="img/BH-logo.png" alt="DATALINK PIPELINE LOGIN SYSTEM">
+            </div>
+            <h1>DATALINK PIPELINE LOGIN SYSTEM</h1>
+            <a href="#" class="sao-link">Datalink</a>
+        </header>
+        <main> 
+            <div class="content-wrapper">
+                <div class="mobile-logo">
+                    <img src="img/CTU-logo-BH.png" alt="Cebu Technological University Logo">
+                </div>
+                <div class="left-side">
+                    <div class="login-header">
+                        <h2>Login</h2>
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <form id="loginForm"> 
+                        <label for="email">
+                            <i class="fas fa-user"></i> Email
+                        </label> 
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        <label for="password">
+                            <i class="fas fa-lock"></i> Password
+                        </label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                        <div class="remember-me">
+                            <label for="rememberMe">
+                                <input type="checkbox" id="rememberMe" name="rememberMe">
+                                    Remember me
+                            </label>
+                        </div>
+                        <button type="submit">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                        <div class="links">
+                            <a href="#"><i class="fas fa-question-circle"></i> Forgot Password?</a> 
+                        </div>
+                    </form>
+                    
+                </div>
+                <div class="right-side">
+                    <img src="img/CTU-logo-BH.png" alt="Cebu Technological University Logo">
+                </div>
+            </div>
+        </main>
+        <footer>
+            <a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+            <a href="#"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
+            <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+        </footer>
+    </div>
+ 
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            <h3>Incorrect Credentials</h3>
+            <button id="closeModal">Close</button>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (email === 'admin@gmail.com' && password === 'admin123') {
+                window.location.href = 'adminPage.html';
+            } else if (email === 'user@gmail.com' && password === 'user123') {
+                window.location.href = 'userPage.html';
+            } else {
+                // Show modal for incorrect credentials
+                const modal = document.getElementById('errorModal');
+                modal.style.display = 'flex';
+
+                document.getElementById('closeModal').addEventListener('click', function() {
+                    modal.style.display = 'none';
+                });
+
+                window.addEventListener('click', function(event) {
+                    if (event.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
